@@ -126,7 +126,14 @@ func (s *Struct) FillMap(out map[string]interface{}) {
 			switch v.Kind() {
 			case reflect.Map, reflect.Struct:
 				isSubStruct = true
+			case reflect.String:
+				finalVal = v.String()
+			case reflect.Bool:
+				finalVal = v.Bool()
+			case reflect.Invalid:
+				finalVal = nil
 			}
+
 		} else {
 			finalVal = val.Interface()
 		}
